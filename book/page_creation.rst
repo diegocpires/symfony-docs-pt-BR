@@ -1,62 +1,60 @@
 .. index::
-   single: Page creation
+   single: Criando Págnas
 
-Creating Pages in Symfony2
+Criando Páginas no Symfony2
 ==========================
 
-Creating a new page in Symfony2 is a simple two-step process:
+Criar páginas no Symfony2 é um simples processo de 2 etapas:
 
-* *Create a route*: A route defines the URL (e.g. ``/about``) to your page
-  and specifies a controller (which is a PHP function) that Symfony2 should
-  execute when the URL of an incoming request matches the route path;
+* *Criar uma rota*: Uma rota define a URL (ex. ``/sobre``) para sua página
+  e define um controller (que é uma função PHP) que o Symfony2 deverá executar
+  quando a URL de um requisição for igual ao caminho da rota;
 
-* *Create a controller*: A controller is a PHP function that takes the incoming
-  request and transforms it into the Symfony2 ``Response`` object that's
-  returned to the user.
+* *Criar o controller*: Um controller é uma função PHP que pega um requisição
+  e transforma em um objeto do tipo ``Response`` do Symfony que será retornado
+  para o usuário.
 
-This simple approach is beautiful because it matches the way that the Web works.
-Every interaction on the Web is initiated by an HTTP request. The job of
-your application is simply to interpret the request and return the appropriate
-HTTP response.
+Essa abordagem simples é elegante porque combina com a forma que a Internet funciona.
+Cada interação na Internet é iniciada com um requisição HTTP. O trabalho da sua 
+aplicação é simplesmente interpretar a requisição e retornar a resposta HTTP apropriada.
 
-Symfony2 follows this philosophy and provides you with tools and conventions
-to keep your application organized as it grows in users and complexity.
+Symfony2 segue essa filosofia e apoia você com ferramentas e padrões para manter sua 
+aplicação organizada enquanto cresce em complexidade e número de usuários.
 
 .. index::
-   single: Page creation; Environments & Front Controllers
+   single: Criando Páginas; Ambientes & Controladores Frontais
 
 .. _page-creation-environments:
 
-Environments & Front Controllers
+Ambientes & Controladores Frontais
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Every Symfony application runs within an :term:`environment`. An environment
-is a specific set of configuration and loaded bundles, represented by a string.
-The same application can be run with different configurations by running the
-application in different environments. Symfony2 comes with three environments
-defined — ``dev``, ``test`` and ``prod`` — but you can create your own as well.
+Cada aplicação Symfony executa em um :term:`ambiente`. Um ambiente
+é um conjunto específicps de configurações e pacotes carregados, representados por uma string.
+A mesma aplicação pode ser executada em diferentes configurações em diferentes ambientes. 
+Symfony2 tem por padrão três ambientes definidos — ``dev``, ``test`` and ``prod`` — 
+mas você pode criar mais de acordo com a sua necessidade.
 
-Environments are useful by allowing a single application to have a dev environment
-built for debugging and a production environment optimized for speed. You might
-also load specific bundles based on the selected environment. For example,
-Symfony2 comes with the WebProfilerBundle (described below), enabled only
-in the ``dev`` and ``test`` environments.
+Ambientes são úteis para permitir que uma mesma aplicação tenha um ambiente de desenvolvimento
+construído para fazer debug e um ambiente de produção otimizado para velocidade. Você também pode
+carregar módulos específicos baseados no ambiente selecionado. Por exemplo,
+Symfony2 vem com o WebProfilerBundle (descrito abaixo), habilitado somente no ambiente ``dev`` 
+e no ``test``.
 
-Symfony2 comes with two web-accessible front controllers: ``app_dev.php``
-provides the ``dev`` environment, and ``app.php`` provides the ``prod`` environment.
-All web accesses to Symfony2 normally go through one of these front controllers.
-(The ``test`` environment is normally only used when running unit tests, and so
-doesn't have a dedicated front controller. The console tool also provides a
-front controller that can be used with any environment.)
+Symfony2 vem com dois controlers frontais acessíveis pela internet: ``app_dev.php``
+provê o ambiente ``dev``, e ``app.php`` provê o ambiente ``prod``.
+Todos os acessos web do Symfony2 normalmente passam por esses dois controlers frontais.
+(O ambiente ``test`` é normalmente usado somente para executar testes unitários, e não
+tem um controler frontal dedicado a ele. O console provê o controler frontal
+que será usado com esse ambiente.)
 
-When the front controller initializes the kernel, it provides two parameters:
-the environment, and also whether the kernel should run in debug mode.
-To make your application respond faster, Symfony2 maintains a cache under the
-``app/cache/`` directory. When debug mode is enabled (such as ``app_dev.php``
-does by default), this cache is flushed automatically whenever you make changes
-to any code or configuration. When running in debug mode, Symfony2 runs
-slower, but your changes are reflected without having to manually clear the
-cache.
+Quando o controler frontal inicializa o kernel, ele fornece dois parâmetros:
+o ambiente, e se o kernel deve executar em modo de depuração.
+Para fazer sua aplicação responder mais rápido o Symfony2 mantêm um cache no diretório
+``app/cache/``. Quando o modo de depuração está habilitado (como o ``app_dev.php``
+faz por padrão), o cache é atualizado automaticamente quando é realizada qualquer mudança
+no código ou nas configurações. Quando executado no modo de depuração o Symfony2 executa
+mais devagar, mas suas mudanças são atualizadas sem ter que atualizar o cache manualmente.
 
 .. index::
    single: Page creation; Example
